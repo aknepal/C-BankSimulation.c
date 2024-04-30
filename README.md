@@ -4,8 +4,7 @@
 This is a simple command-line bank management system written in C. The project aims to provide basic functionalities for managing bank accounts.
 
 # Team Members:
-
-• Ashish Bhattarai
+* Ashish Bhattarai
 
 * Aman Kulung
 
