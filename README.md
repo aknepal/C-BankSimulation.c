@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 // Structure to represent a bank account
 typedef struct BankAccount {
     int accountNumber , Age;
