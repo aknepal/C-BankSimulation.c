@@ -1,333 +1,68 @@
+# C BANK SIMULATION
+# Introduction:
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-// Structure to represent a bank account
-typedef struct BankAccount {
-    int accountNumber , Age;
-    char FirstName[50] , LastName[50]
-    ,Address[50] , FatherName[50], Gender[10] ,
-    Trustee[50] , ContactNo[50] , Email[50];
-    double balance;
-}stb;
+This is a simple command-line bank management system written in C. The project aims to provide basic functionalities for managing bank accounts.
 
-// Function prototypes
-void createAccount(stb accounts[], int *numAccounts);
-void deposit(stb accounts[], int numAccounts);
-void withdraw(stb accounts[], int numAccounts);
-void transferMoney(stb accounts[], int numAccounts);
-void saveAccounts(stb accounts[], int numAccounts);
-void loadAccounts(stb accounts[], int *numAccounts);
-void deleteAccount(stb accounts[]
-     , int *numAccounts, int acc_to_del);
+# Team Members:
 
-void displayAccountDetails(stb accounts[]
-    , int numAccounts, int accountNumber);
+• Ashish Bhattarai
 
-void creators();
+* Aman Kulung
 
-// Main function
-int main() {
-    stb accounts[50];
-    int numAccounts = 0;
-    int choice;
-    int accountNumber;
+* Arjun Gautam
 
-    // Load accounts from file
-    loadAccounts(accounts, &numAccounts);
+* Shishir Bhandari
 
-    do {
-        // Display menu
-        printf("\n    ***********************************\n");
-        printf("    *          C-Bank Menu            *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 1. Create Account               *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 2. Deposit Money                *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 3. Withdraw Money               *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 4. Transfer Money               *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 5. Account Details              *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 6. Delete Account               *\n");
-        printf("    ---------------------------------\n");
-        printf("    * 7. Exit Menu                    *\n");
-        printf("    ***********************************\n\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+# Features:
 
-        // Handle user choice
-        switch (choice) {
-            case 1:
-                createAccount(accounts, &numAccounts);
-                break;
-            case 2:
-                deposit(accounts, numAccounts);
-                break;
-            case 3:
-                withdraw(accounts, numAccounts);
-                break;
-            case 4:
-                transferMoney(accounts, numAccounts);
-                break;
+1. Create Account: Allow users to create new bank accounts by providing account holder details such as name, address, gender, age, contact number, email, and trustee name.
 
-             case 5:
-                printf("\nEnter account number: ");
-                scanf("%d", &accountNumber);
-                displayAccountDetails(accounts, numAccounts, accountNumber);
-            break;
+2. Deposit Money: Enable users to deposit money into their accounts.
 
-            case 6:
-                printf("\nEnter Account Number To Delete\n");
-                int acc_to_del;
-                scanf("%d",&acc_to_del);
-                deleteAccount (accounts,&numAccounts,acc_to_del);
-            break;
+3. Withdraw Money: Allow users to withdraw money from their accounts.
 
-            case 7:
-                creators();
-                // Save accounts to file before exiting
-                saveAccounts(accounts, numAccounts);
-                break;
-            default:
-                printf("\nInvalid choice.\n Please try again.\n");
-        }
-    } while (choice != 7);
+4. Transfer Money: Provide functionality to transfer money between accounts.
 
-    return 0;
-}
+5. Display Account Details: Allow users to view account details by entering the account number.
 
-// Function to create a new bank account
-void createAccount(stb accounts[], int *numAccounts) {
-    printf("\n   .................................\n");
-    printf("   .      Creating New Account     .\n");
-    printf("   .................................\n\n");
-    printf("\n Enter Account Holder Details: \n\nFirst Name and Last Name : ");
-    scanf("%s %s", accounts[*numAccounts].FirstName , accounts[*numAccounts].LastName );
-    printf("Father Name : ");
-    scanf("%s", accounts[*numAccounts].FatherName);
-    printf("Adress : ");
-    scanf("%s", accounts[*numAccounts].Address);
-    printf("Gender : ");
-    scanf("%s", accounts[*numAccounts].Gender);
-    printf("Age : ");
-    scanf("%d", &accounts[*numAccounts].Age);
-    printf("Contact No : ");
-    scanf("%d", &accounts[*numAccounts].ContactNo);
-    printf("Email : ");
-    scanf("%s", accounts[*numAccounts].Email);
-    printf("Trustee Name : ");
-    scanf("%s", accounts[*numAccounts].Trustee);
+6. Delete Account: Enable users to delete their accounts by providing the account number.
 
-    accounts[*numAccounts].accountNumber = 10203004 + *numAccounts; // Generate account number
-    accounts[*numAccounts].balance = 0.0;
-    printf("Account created successfully! \nAccount number: %d\n", accounts[*numAccounts].accountNumber);
-    (*numAccounts)++;
-}
+7. Save Accounts to File: Implement functionality to save all account data to a file for persistence.
 
-// Function to handle deposits
-void deposit(stb  accounts[], int numAccounts) {
-    int accountNumber, index;
-    double amount;
-    printf("\n   ...................................\n");
-    printf("   .            Deposit              .\n");
-    printf("   ...................................\n\n");
-    printf("Enter account number: ");
-    scanf("%d", &accountNumber);
+8. Load Accounts from File: Provide the ability to load previously saved account data from a file on program startup.
 
-    for (index = 0; index < numAccounts; index++) {
-        if (accounts[index].accountNumber == accountNumber) {
-            printf("Enter deposit amount: ");
-            scanf("%lf", &amount);
-            if (amount > 0) {
-                accounts[index].balance += amount;
-                printf("Deposit successful.\nCurrent balance: Rs %.2lf\n", accounts[index].balance);
-            } else {
-                printf("Invalid amount.\nPlease enter a positive value.\n");
-            }
-            return;
-        }
-    }
-    printf("Account not found.\nPlease enter a valid account number.\n");
-}
+# Usage:
 
-// Function to handle withdrawals
-void withdraw(stb accounts[], int numAccounts) {
-    int accountNumber, index;
-    double amount;
-    printf("\n   ...................................\n");
-    printf("   .           Withdraw              .\n");
-    printf("   ...................................\n\n");
-    printf("Enter account number: ");
-    scanf("%d", &accountNumber);
+1. Run Code: After successfully build and run ,the basic flow of code is 
 
-    for (index = 0; index < numAccounts; index++) {
-        if (accounts[index].accountNumber == accountNumber) {
-            printf("Enter withdrawal amount: ");
-            scanf("%lf", &amount);
-            if (amount > 0 && amount <= accounts[index].balance) {
-                accounts[index].balance -= amount;
-                printf("Withdrawal successful. \nCurrent balance: Rs %.2lf\n", accounts[index].balance);
-            } else if (amount <= 0) {
-                printf("Invalid amount.\nPlease enter a positive value.\n");
-            } else {
-                printf("Insufficient balance. \nWithdrawal not allowed.\n");
-            }
-            return;
-        }
-    }
-    printf("Account not found.\nPlease enter a valid account number.\n");
-}
+Basic Workflow
 
+Creating a New Account: Select option 1 from the menu to create a new bank account and enter the required details.
 
-// Function to transfer money from one account to another
-void transferMoney(stb accounts[], int numAccounts) {
-    int fromAccountNumber, toAccountNumber, fromIndex = -1, toIndex = -1;
-    double amount;
+Depositing Money: Select option 2 to deposit money into an existing account by entering the account number and deposit amount.
 
-    // Get the source account number
-    printf("\n   ...................................\n");
-    printf("   .         Transfer Money          .\n");
-    printf("   ...................................\n\n");
-    printf("Enter source account number: ");
-    scanf("%d", &fromAccountNumber);
+Withdrawing Money: Select option 3 to withdraw money from an existing account by entering the account number and withdrawal amount.
 
-    // Find the source account
-    for (int i = 0; i < numAccounts; i++) {
-        if (accounts[i].accountNumber == fromAccountNumber) {
-            fromIndex = i;
-            break;
-        }
-    }
-    if (fromIndex == -1) {
-        printf("Source account not found.\nPlease enter a valid account number.\n");
-        return;
-    }
+Transferring Money: Select option 4 to
 
-    // Get the destination account number
-    printf("Enter destination account number: ");
-    scanf("%d", &toAccountNumber);
+transfer money between accounts by
 
-    // Find the destination account
-    for (int i = 0; i < numAccounts; i++) {
-        if (accounts[i].accountNumber == toAccountNumber) {
-            toIndex = i;
-            break;
-        }
-    }
-    if (toIndex == -1) {
-        printf("Destination account not found. \nPlease enter a valid account number.\n");
-        return;
-    }
+entering the source and destination account numbers along with the amount.
 
-    // Get the amount to transfer
-    printf("Enter amount to transfer: ");
-    scanf("%lf", &amount);
+Viewing Account Details: Select option by entering the account number anu deposit amount.
 
-    // Validate the amount and perform the transfer
-    if (amount <= 0) {
-        printf("Invalid amount.\nPlease enter a positive value.\n");
-    } else if (accounts[fromIndex].balance < amount) {
-        printf("Insufficient balance in the source account.\nTransfer not allowed.\n");
-    } else {
-        // Perform the transfer
-        accounts[fromIndex].balance -= amount;
-        accounts[toIndex].balance += amount;
-        printf("Transfer successful! \n");
-       printf("Source account balance: Rs %.2lf\n", accounts[fromIndex].balance);
-        printf("Destination account balance: Rs %.2lf\n", accounts[toIndex].balance);
-    }
-}
+• Withdrawing Money: Select option 3 to withdraw money from an existing account by entering the account number and withdrawal amount.
 
-void creators(){
+• Transferring Money: Select option 4 to transfer money between accounts by entering the source and destination account numbers along with the
 
-                printf("\n\nExiting Bank Simulator. Thank you!\n");
-                printf("\n  ......................................\n");
-                printf("  .            Created By              .\n");
-                printf("  .------------------------------------.\n");
-                printf("  . Ashish Bhattarai       Aman Kulung .\n");
-                printf("  . Arjun Gautam      Shishir Bhandari .\n");
-                printf("  ......................................\n");
+amount.
 
-}
+• Viewing Account Details: Select option 5 to view account details by entering the account number.
 
-// Function to save bank account data to a file
-void saveAccounts(stb accounts[], int numAccounts) {
-    FILE *file = fopen("accounts.dat", "wb");
-    if (!file) {
-        printf("Error opening file for writing.\n");
-        return;
-    }
-    fwrite(accounts, sizeof(stb), numAccounts, file);
-    fclose(file);
-    printf("\nBank accounts saved successfully.\n");
-}
+• Deleting an Account: Select option 6 to
 
-// Function to load bank account data from a file
-void loadAccounts(stb accounts[], int *numAccounts) {
-    FILE *file = fopen("accounts.dat", "rb");
-    if (!file) {
-        printf("No existing account data found.\n");
-        return;
-    }
-      *numAccounts = fread(accounts, sizeof(stb), 50, file);
-    fclose(file);
-    printf("\n    %d bank accounts loaded successfully\n", *numAccounts);
-}
+delete an existing account by entering the account number.
 
-// Function to delete an account by account number
-void deleteAccount(stb accounts[], int *numAccounts, int acc_to_del) {
-    int indexToDelete = -1;
+• Exiting the Program: Select option 7 to
 
-    // Find the account to delete
-    for (int i = 0; i < *numAccounts; i++) {
-        if (accounts[i].accountNumber == acc_to_del) {
-            indexToDelete = i;
-            break;
-        }
-    }
-
-    // If the account is found, remove it
-    if (indexToDelete != -1) {
-        for (int i = indexToDelete; i < *numAccounts - 1; i++) {
-            accounts[i] = accounts[i + 1];
-        }
-        (*numAccounts)--;
-
-        printf("\nAccount %d deleted successfully.\n", acc_to_del);
-        }
-        if (indexToDelete==-1){
-
-            printf("Invalid Account Number\n");
-        }
-
-}
-
-// Function to display account details by account number
- void displayAccountDetails(stb accounts[], int numAccounts, int accountNumber) {
-    int index;
-
-    // Find the account with the specified account number
-    for (index = 0; index < numAccounts; index++) {
-        if (accounts[index].accountNumber == accountNumber) {
-            // Account found, display the details
-            printf("\nAccount Details:\n");
-            printf("Account Number: %d\n", accounts[index].accountNumber);
-            printf("Customer Name: %s %s\n",accounts[index].FirstName ,accounts[index].LastName);
-            printf("Father Name: %s \n",accounts[index].FatherName);
-            printf("Address: %s \n",accounts[index].Address);
-            printf("Gender: %s \n",accounts[index].Gender);
-            printf("Age: %d \n",accounts[index].Age);
-            printf("Contact No: %d \n",accounts[index].ContactNo);
-            printf("Email: %s \n",accounts[index].Email);
-            printf("Trustee: %s \n",accounts[index].Trustee);
-            printf("Current Balance: Rs %.2lf\n", accounts[index].balance);
-            return;
-        }
-    }
-    printf("\nAccount not found.\n Please enter a valid account number.\n");
-
-}
-
+exit the program.
